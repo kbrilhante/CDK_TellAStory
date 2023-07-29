@@ -1,19 +1,23 @@
 const folder = '/ibagens/';
-let lstIbagens = [];
 let ibagens = [];
+let bgColor;
 
 function preload() {
-    listFilesInFolder("." + folder);
+    ibagens = loadPictures("." + folder);
 }
-
 
 function setup() {
-    noCanvas();
-    console.log(ibagens)
+    createCanvas(400, 400);
 }
 
-async function listFilesInFolder(folderPath) {
+function draw() {
+    background("yellow")
+}
+
+function loadPictures(folderPath) {
+    let imgs = [];
     httpGet(folderPath, 'text', true, (response) => {
+        let lstIbagens = [];
         const div = document.createElement("div");
         div.innerHTML = response;
         const files = div.querySelector("#files");
@@ -27,7 +31,8 @@ async function listFilesInFolder(folderPath) {
         for (let i = 0; i < lstIbagens.length; i++) {
             const file = lstIbagens[i];
             const ibagem = loadImage(file);
-            ibagens.push(ibagem)
+            imgs.push(ibagem)
         }
     });
+    return imgs;
 }
