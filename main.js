@@ -13,7 +13,7 @@ function setup() {
 function draw() {
     background("yellow");
     if (ibagens.length) {
-        image(ibagens[0], 0, 0, width, height);
+        image(ibagens[6], 0, 0, width, height);
     }
 }
 
