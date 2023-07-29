@@ -11,7 +11,10 @@ function setup() {
 }
 
 function draw() {
-    background("yellow")
+    background("yellow");
+    if (ibagens.length) {
+        image(ibagens[0], 0, 0, width, height);
+    }
 }
 
 function loadPictures(folderPath) {
