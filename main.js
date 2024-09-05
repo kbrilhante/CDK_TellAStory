@@ -20,7 +20,6 @@ function draw() {
 function loadPictures(folderPath) {
     let imgs = [];
     httpGet(folderPath, 'text', true, (response) => {
-        console.log(response)
         let lstIbagens = [];
         const div = document.createElement("div");
         div.innerHTML = response;
