@@ -117,7 +117,7 @@ function theEnd() {
     gameInfo.player = "";
     gameInfo.action = "";
     gameInfo.img = images.theEnd;
-    gameInfo.milli = setTimer(1000);
+    gameInfo.milli = setTimer(2000);
 }
 
 function setTimer(time) {
