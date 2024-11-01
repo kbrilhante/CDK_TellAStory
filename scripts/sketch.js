@@ -20,7 +20,6 @@ let gameInfo = {
 
 function preload() {
     document.getElementById("lblParticipants").innerText = random(PARTICIPANTSTITLES) + ":";
-    document.getElementById("divSetup").hidden = false;
     images.next = loadImage("./ibagens/next.png");
     images.ready = loadImage("./ibagens/ready.png");
     images.theEnd = loadImage("./ibagens/theEnd.png");
@@ -32,6 +31,7 @@ function preload() {
 }
 
 function setup() {
+    document.getElementById("divSetup").hidden = false;
     let scrSize = windowWidth < windowHeight ? windowWidth : windowHeight;
     scrSize *= 0.8;
     const canvas = createCanvas(scrSize, scrSize);
@@ -48,7 +48,6 @@ function setup() {
 function draw() {
     background(gameInfo.background);
     image(gameInfo.img, width / 2, height / 2, width * 0.8, height * 0.8);
-    // write player's name on screen
     write(gameInfo.player, 30, 10, 10);
     write(gameInfo.action, 26, 10, 44);
     if (gameInfo.milli <= millis() && gameInfo.milli != 0) handleChange();
@@ -103,12 +102,12 @@ function changeImg() {
 
 function nextPlayer() {
     changeBG();
-    gameInfo.status = 1;
     gameInfo.player = participants.shift();
     gameInfo.player ? next() : theEnd();
 }
 
 function next() {
+    gameInfo.status = 1;
     gameInfo.action = "is " + random(PARTICIPANTSACTIONS);
     gameInfo.img = images.next;
     gameInfo.milli = setTimer(random(20000, 30000));
@@ -142,7 +141,6 @@ function setListeners() {
 
 function begin() {
     participants = getParticipants();
-    console.log(participants)
     if (participants.length) {
         ready();
         document.getElementById("title").innerText = random(titles);
