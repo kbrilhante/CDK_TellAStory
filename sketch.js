@@ -1,7 +1,10 @@
 const IMAGESNUMBER = 78;
 
-let images = [];
-let next;
+let images = {
+    imgs: [],
+    next: "",
+    theEnd: "",
+};
 let participants = [];
 
 let imgInfo = {
@@ -11,9 +14,10 @@ let imgInfo = {
 }
 
 function preload() {
-    next = loadImage("./ibagens/next.png");
+    images.next = loadImage("./ibagens/next.png");
+    images.theEnd = loadImage("./ibagens/theEnd.png");
     for (let i = 1; i <= IMAGESNUMBER; i++) {
-        images.push(loadImage("./ibagens/" + i + ".png"));
+        images.imgs.push(loadImage("./ibagens/" + i + ".png"));
     }
     setListeners();
 }
@@ -48,16 +52,16 @@ function changeBG() {
 function changeImg() {
     changeBG();
 
-    imgInfo.img = random(images);
+    imgInfo.img = random(images.imgs);
     
-    const rndTime = random(5000, 10000);
+    const rndTime = random(10000, 20000);
     imgInfo.milli = millis() + rndTime
 }
 
 function nextPlayer() {
     changeBG();
 
-    imgInfo.img = next;
+    imgInfo.img = images.next;
     imgInfo.milli = millis() + 20000;
 }
 
@@ -66,5 +70,6 @@ function setListeners() {
 }
 
 function begin() {
+    document.getElementById("divGame").hidden = false;
     
 }
