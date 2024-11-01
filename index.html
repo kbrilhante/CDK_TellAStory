@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -13,9 +13,7 @@
         crossorigin="anonymous"></script>
 
     <!-- p5 -->
-    <script src="./lib/p5.js"></script>
-    <!-- <script src="./lib/p5.sound.js"></script> -->
-    <!-- <script src="./lib/p5.speech.js"></script> -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js' integrity='sha512-kSvJqUQUrW819ZGEnJKH6dwr8XmNBP509Puwtuj1TdY9SasSuY2enn+e7NcbVChql/ZFcDAicGSzDztq5hQCEQ==' crossorigin='anonymous'></script>
 
     <!-- Font Awesome -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css'
@@ -27,9 +25,9 @@
 </head>
 
 <body>
-    <h1 class="title py-3">Tell a Story</h1>
+    <h1 class="display-4 py-3">Tell a Story</h1>
     
-    <div id="out" class="container">
+    <div id="setup" class="container">
         <div class="row">
             <div class="col">
                 <label class="form-label" for="txtParticipants">Participants</label>
@@ -48,12 +46,15 @@
                 <input class="form-range" type="range" name="sldSpeed" id="sldSpeed" min="4" max="" value="" step="">
             </div>
         </div>
-        <button id="btnBegin" class="btn btn-primary">Begin Story</button>
+        <div class="row">
+            <div class="col-auto mx-auto my-3">
+                <button id="btnBegin" class="btn btn-primary">Begin Story</button>
+            </div>
+        </div>
     </div>
 
     <!-- JS -->
-    <!-- <script src="test.js"></script> -->
-    <script src="main.js"></script>
+    <script src="sketch.js"></script>
 </body>
 
 </html>
