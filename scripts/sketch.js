@@ -13,8 +13,9 @@ let gameInfo = {
     background: 0,
     img: "",
     milli: 0,
-    player: "Squeaky",
-    status: 0, // 0 = ready, 1 = next, 2 = random image
+    player: "",
+    action: "",
+    status: 0, // 0 = ready, 1 = next, 2 = random image, 3 = the end
 }
 
 function preload() {
@@ -46,13 +47,25 @@ function setup() {
 
 function draw() {
     background(gameInfo.background);
-    image(gameInfo.img, width / 2, height / 2, width, height);
+    image(gameInfo.img, width / 2, height / 2, width * 0.8, height * 0.8);
     // write player's name on screen
-    textSize(20);
-    textAlign(LEFT, TOP);
-    const txt = gameInfo.player + gameInfo.action;
-    text(txt, 10, 10);
+    write(gameInfo.player, 30, 10, 10);
+    write(gameInfo.action, 26, 10, 44);
     if (gameInfo.milli <= millis() && gameInfo.milli != 0) handleChange();
+}
+
+function write(txt, size, x, y) {
+    push();
+    stroke(255);
+    strokeWeight(2);
+    strokeJoin(BEVEL);
+    fill(0);
+    textFont("Segoe UI");
+    textStyle(BOLD);
+    textAlign(LEFT, TOP);
+    textSize(size);
+    text(txt, x, y);
+    pop();
 }
 
 function handleChange() {
@@ -77,7 +90,7 @@ function handleChange() {
 function changeBG() {
     push();
     colorMode(HSL, 100);
-    gameInfo.background = color(random(100), 50, 60);
+    gameInfo.background = color(random(100), 50, 70);
     pop();
 }
 
@@ -85,7 +98,7 @@ function changeImg() {
     changeBG();
     gameInfo.status = 2;
     gameInfo.img = random(images.imgs);
-    gameInfo.milli = setTimer(1000)//setTimer(random(20000, 30000));
+    gameInfo.milli = setTimer(random(20000, 30000));
 }
 
 function nextPlayer() {
@@ -96,9 +109,9 @@ function nextPlayer() {
 }
 
 function next() {
-    gameInfo.action = " is " + random(PARTICIPANTSACTIONS);
+    gameInfo.action = "is " + random(PARTICIPANTSACTIONS);
     gameInfo.img = images.next;
-    gameInfo.milli = setTimer(1000)//setTimer(random(20000, 30000));
+    gameInfo.milli = setTimer(random(20000, 30000));
 }
 
 function ready() {
@@ -107,8 +120,7 @@ function ready() {
     gameInfo.player = "";
     gameInfo.action = "";
     gameInfo.img = images.ready;
-    // gameInfo.milli = setTimer(5000);
-    gameInfo.milli = setTimer(1000);
+    gameInfo.milli = setTimer(5000);
 }
 
 function theEnd() {
@@ -117,7 +129,7 @@ function theEnd() {
     gameInfo.player = "";
     gameInfo.action = "";
     gameInfo.img = images.theEnd;
-    gameInfo.milli = setTimer(2000);
+    gameInfo.milli = setTimer(10000);
 }
 
 function setTimer(time) {
@@ -130,17 +142,21 @@ function setListeners() {
 
 function begin() {
     participants = getParticipants();
-    ready();
-    document.getElementById("title").innerText = random(titles);
-    document.getElementById("divGame").hidden = false;
-    document.getElementById("divSetup").hidden = true;
-    loop();
+    console.log(participants)
+    if (participants.length) {
+        ready();
+        document.getElementById("title").innerText = random(titles);
+        document.getElementById("divGame").hidden = false;
+        document.getElementById("divSetup").hidden = true;
+        loop();
+    }
 }
 
 function getParticipants() {
     const part = document.getElementById("txtParticipants").value.split("\n");
     for (let i = 0; i < part.length; i++) {
         part[i] = part[i].trim();
+        if (!part[i]) part.splice(i, 1);
     }
     return shuffle(part);
 }
