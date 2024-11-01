@@ -14,6 +14,7 @@ let imgInfo = {
     background: 0,
     img: "",
     milli: 0,
+    player: "Squeaky",
 }
 
 function preload() {
@@ -36,7 +37,7 @@ function setup() {
 
     imageMode(CENTER);
 
-    nextPlayer();
+    imgInfo.img = images.theEnd;
     noLoop();
 }
 
@@ -64,7 +65,9 @@ function changeImg() {
 
 function nextPlayer() {
     changeBG();
-
+    imgInfo.player = participants.shift();
+    console.log(imgInfo)
+    console.log(participants)
     imgInfo.img = images.next;
     imgInfo.milli = millis() + 20000;
 }
@@ -74,8 +77,12 @@ function setListeners() {
 }
 
 function begin() {
-    document.getElementById("divGame").hidden = false;
     participants = getParticipants();
+    nextPlayer();
+    document.getElementById("title").innerText = random(titles);
+    document.getElementById("divGame").hidden = false;
+    document.getElementById("divSetup").hidden = true;
+    loop();
 }
 
 function getParticipants() {
@@ -83,5 +90,5 @@ function getParticipants() {
     for (let i = 0; i < part.length; i++) {
         part[i] = part[i].trim();
     }
-    console.log(part)
+    return shuffle(part);
 }
