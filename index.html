@@ -25,34 +25,43 @@
 </head>
 
 <body>
-    <h1 class="display-4 py-3">Tell a Story</h1>
-    
-    <div id="setup" class="container">
-        <div class="row">
-            <div class="col">
-                <label class="form-label" for="txtParticipants">Participants</label>
-                <textarea class="form-control-plaintext" name="txtParticipants" id="txtParticipants" cols="30" rows="6"></textarea>
-            </div>
-            <div class="col">
-                <label class="form-label" for="sldSpeed">
-                    Speed:
-                    <span id="valSpd"></span>
-                </label>
-                <input class="form-range" type="range" name="sldSpeed" id="sldSpeed" min="" max="" value="" step="">
-                <label class="form-label" for="sldSpeed">
-                    How many turns?
-                    <span id="valSpd"></span>
-                </label>
-                <input class="form-range" type="range" name="sldSpeed" id="sldSpeed" min="4" max="" value="" step="">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-auto mx-auto my-3">
-                <button id="btnBegin" class="btn btn-primary">Begin Story</button>
-            </div>
-        </div>
-    </div>
+    <main>
 
+        <h1 class="display-4 py-3">Tell a Story</h1>
+        
+        <div id="setup" class="container">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="txtParticipants">Participants</label>
+                    <textarea class="form-control-plaintext" name="txtParticipants" id="txtParticipants" cols="30" rows="6"></textarea>
+                </div>
+                <!-- <div class="col">
+                    <label class="form-label" for="sldSpeed">
+                        Speed:
+                        <span id="valSpd"></span>
+                    </label>
+                    <input class="form-range" type="range" name="sldSpeed" id="sldSpeed" min="" max="" value="" step="">
+                    <label class="form-label" for="sldSpeed">
+                        How many turns?
+                        <span id="valSpd"></span>
+                    </label>
+                    <input class="form-range" type="range" name="sldSpeed" id="sldSpeed" min="4" max="" value="" step="">
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-auto mx-auto my-3">
+                    <button id="btnBegin" class="btn btn-primary">Begin Story</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="divGame" class="container-fluid" hidden>
+            <div class="row">
+                <div class="col-auto mx-auto" id="game"></div>
+            </div>
+        </div>
+        
+    </main>
     <!-- JS -->
     <script src="sketch.js"></script>
 </body>
