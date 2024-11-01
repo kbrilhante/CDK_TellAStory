@@ -66,6 +66,8 @@ function handleChange() {
         case 2:
             nextPlayer();
             break;
+        case 3:
+            endGame();
         default:
             gameInfo.status = 0;
             break;
@@ -83,16 +85,20 @@ function changeImg() {
     changeBG();
     gameInfo.status = 2;
     gameInfo.img = random(images.imgs);
-    gameInfo.milli = setTimer(random(20000, 30000));;
+    gameInfo.milli = setTimer(1000)//setTimer(random(20000, 30000));
 }
 
 function nextPlayer() {
     changeBG();
     gameInfo.status = 1;
     gameInfo.player = participants.shift();
+    gameInfo.player ? next() : theEnd();
+}
+
+function next() {
     gameInfo.action = " is " + random(PARTICIPANTSACTIONS);
     gameInfo.img = images.next;
-    gameInfo.milli = setTimer(random(20000, 30000));
+    gameInfo.milli = setTimer(1000)//setTimer(random(20000, 30000));
 }
 
 function ready() {
@@ -101,7 +107,17 @@ function ready() {
     gameInfo.player = "";
     gameInfo.action = "";
     gameInfo.img = images.ready;
-    gameInfo.milli = setTimer(5000);
+    // gameInfo.milli = setTimer(5000);
+    gameInfo.milli = setTimer(1000);
+}
+
+function theEnd() {
+    changeBG();
+    gameInfo.status = 3;
+    gameInfo.player = "";
+    gameInfo.action = "";
+    gameInfo.img = images.theEnd;
+    gameInfo.milli = setTimer(1000);
 }
 
 function setTimer(time) {
@@ -127,4 +143,12 @@ function getParticipants() {
         part[i] = part[i].trim();
     }
     return shuffle(part);
+}
+
+function endGame() {
+    gameInfo.milli = 0;
+    document.getElementById("title").innerText = random(titles);
+    document.getElementById("divGame").hidden = true;
+    document.getElementById("divSetup").hidden = false;
+    noLoop();
 }
