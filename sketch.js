@@ -5,7 +5,10 @@ let images = {
     next: "",
     theEnd: "",
 };
+
 let participants = [];
+
+let titles = [];
 
 let imgInfo = {
     background: 0,
@@ -19,12 +22,13 @@ function preload() {
     for (let i = 1; i <= IMAGESNUMBER; i++) {
         images.imgs.push(loadImage("./ibagens/" + i + ".png"));
     }
+    titles = loadStrings("./story_titles.txt");
     setListeners();
 }
 
 function setup() {
     let scrSize = windowWidth < windowHeight ? windowWidth : windowHeight;
-    scrSize *= 0.9;
+    scrSize *= 0.8;
     const canvas = createCanvas(scrSize, scrSize);
     canvas.parent("game");
 
@@ -71,5 +75,13 @@ function setListeners() {
 
 function begin() {
     document.getElementById("divGame").hidden = false;
-    
+    participants = getParticipants();
+}
+
+function getParticipants() {
+    const part = document.getElementById("txtParticipants").value.split("\n");
+    for (let i = 0; i < part.length; i++) {
+        part[i] = part[i].trim();
+    }
+    console.log(part)
 }

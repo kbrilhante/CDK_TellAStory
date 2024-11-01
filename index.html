@@ -1,44 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tell a Story</title>
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- p5 -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js' integrity='sha512-kSvJqUQUrW819ZGEnJKH6dwr8XmNBP509Puwtuj1TdY9SasSuY2enn+e7NcbVChql/ZFcDAicGSzDztq5hQCEQ==' crossorigin='anonymous'></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"
+      integrity="sha512-kSvJqUQUrW819ZGEnJKH6dwr8XmNBP509Puwtuj1TdY9SasSuY2enn+e7NcbVChql/ZFcDAicGSzDztq5hQCEQ=="
+      crossorigin="anonymous"
+    ></script>
 
     <!-- Font Awesome -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css'
-        integrity='sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw=='
-        crossorigin='anonymous' />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css"
+      integrity="sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw=="
+      crossorigin="anonymous"
+    />
 
     <!-- style.css -->
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <main>
+      <h1 class="display-4 py-3">Tell a Story</h1>
 
-        <h1 class="display-4 py-3">Tell a Story</h1>
-        
-        <div id="setup" class="container">
-            <div class="row">
-                <div class="col">
-                    <label class="form-label" for="txtParticipants">Participants</label>
-                    <textarea class="form-control-plaintext" name="txtParticipants" id="txtParticipants" cols="30" rows="6"></textarea>
-                </div>
-                <!-- <div class="col">
+      <div id="setup" class="container">
+        <div class="row">
+          <div class="col">
+            <label class="form-label" for="txtParticipants">Participants</label>
+            <textarea
+              class="form-control-plaintext"
+              name="txtParticipants"
+              id="txtParticipants"
+              cols="30"
+              rows="6"
+            >
+                Blobbert
+                Rupert
+                Hubert
+                Squishy
+                Splat
+                Mickey</textarea>
+          </div>
+          <!-- <div class="col">
                     <label class="form-label" for="sldSpeed">
                         Speed:
                         <span id="valSpd"></span>
@@ -50,28 +73,26 @@
                     </label>
                     <input class="form-range" type="range" name="sldSpeed" id="sldSpeed" min="4" max="" value="" step="">
                 </div> -->
-            </div>
-            <div class="row">
-                <div class="col-auto mx-auto my-3">
-                    <button id="btnBegin" class="btn btn-primary">Begin Story</button>
-                </div>
-            </div>
         </div>
-        
-        <div id="divGame" class="container-fluid" >
-            <div class="row">
-                <div class="col">
-                    <h1 class="display-6">✨<span id="title">Story Title</span>✨</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-auto mx-auto" id="game"></div>
-            </div>
+        <div class="row">
+          <div class="col-auto mx-auto my-3">
+            <button id="btnBegin" class="btn btn-primary">Begin Story</button>
+          </div>
         </div>
-        
+      </div>
+
+      <div id="divGame" class="container-fluid" hidden>
+        <div class="row">
+          <div class="col">
+            <h1 class="display-6">✨<span id="title">Story Title</span>✨</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto mx-auto" id="game"></div>
+        </div>
+      </div>
     </main>
     <!-- JS -->
     <script src="sketch.js"></script>
-</body>
-
+  </body>
 </html>
