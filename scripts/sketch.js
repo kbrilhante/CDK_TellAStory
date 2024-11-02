@@ -5,13 +5,13 @@ let images = {
     ready: "",
 };
 
-let participants = [];
-
-let titles = [];
-
 let gameInfo = {
+    participants: [],
+    imgs: [],
+    titles: [],
     background: 0,
     img: "",
+    imgIndex: 0,
     milli: 0,
     player: "",
     action: "",
@@ -26,8 +26,8 @@ function preload() {
     for (let i = 1; i <= IMAGESNUMBER; i++) {
         images.imgs.push(loadImage("./ibagens/" + i + ".png"));
     }
-    titles = loadStrings("./story_titles.txt");
-    setListeners();
+    gameInfo.titles = loadStrings("./story_titles.txt");
+    document.getElementById("btnBegin").onclick = begin;
 }
 
 function setup() {
@@ -42,6 +42,7 @@ function setup() {
     imageMode(CENTER);
 
     gameInfo.img = images.ready;
+    gameInfo.titles = shuffle(gameInfo.titles)
     noLoop();
 }
 
@@ -96,7 +97,8 @@ function changeBG() {
 function changeImg() {
     changeBG();
     gameInfo.status = 2;
-    gameInfo.img = random(images.imgs);
+    gameInfo.img = gameInfo.imgs.shift();
+    console.log(gameInfo.imgs.length)
     gameInfo.milli = setTimer(random(20000, 30000));
 }
 
@@ -135,15 +137,13 @@ function setTimer(time) {
     return millis() + time;
 }
 
-function setListeners() {
-    document.getElementById("btnBegin").onclick = begin;
-}
-
 function begin() {
     participants = getParticipants();
+    gameInfo.imgs = shuffle(images.imgs);
+    console.log(gameInfo.imgs.length)
     if (participants.length) {
         ready();
-        document.getElementById("title").innerText = random(titles);
+        document.getElementById("title").innerText = gameInfo.titles.shift();
         document.getElementById("divGame").hidden = false;
         document.getElementById("divSetup").hidden = true;
         loop();
@@ -161,7 +161,6 @@ function getParticipants() {
 
 function endGame() {
     gameInfo.milli = 0;
-    document.getElementById("title").innerText = random(titles);
     document.getElementById("divGame").hidden = true;
     document.getElementById("divSetup").hidden = false;
     noLoop();
