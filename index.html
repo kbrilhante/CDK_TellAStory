@@ -49,6 +49,16 @@
           <div class="col">
             <h1 class="display-4 py-3">Tell a Story</h1>
           </div>
+          <div class="col-auto my-auto">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#howToPlay"
+            >
+              <i class="fa-regular fa-circle-question"></i>
+            </button>
+          </div>
         </div>
       </div>
       <div id="divSetup" class="container" hidden>
@@ -86,6 +96,35 @@
         </div>
       </div>
     </main>
+
+    <!-- how to play -->
+    <div
+      class="modal fade"
+      id="howToPlay"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">How To Play</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-start">
+              In <strong>Tell a Story</strong>, you begin by entering the players' names. Once you click Begin Story, a story title appears and the game randomly shuffles the turn order. The first player's name shows on screen and they start telling the story. After a little while, a random image pops up — the storyteller must work that image into their tale. When time is up, the next player continues the story from where it left off, and the game keeps going until everyone has had a turn.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- JS -->
     <script src="./scripts/sketch.js"></script>
   </body>
