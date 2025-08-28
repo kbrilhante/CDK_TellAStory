@@ -1,47 +1,10 @@
-const IMAGESNUMBER = 78;
+const IMAGES_NUMBER = 78;
+const IMAGES_FOLDER = "/ibagens/";
+const IMAGE_READY = "/ibagens/ready.png";
+const IMAGE_NEXT = "/ibagens/next.png";
+const IMAGE_THE_END = "/ibagens/theEnd.png";
 
-const PARTICIPANTSTITLES = [
-    "Story Sprinklers",
-    "Plot Twisters",
-    "Fable Fabricators",
-    "Whimsy Weavers",
-    "Chaos Creators",
-    "Scene Shifters",
-    "Adventure Architects",
-    "Tale Tinkerers",
-    "Legend Builders",
-    "Imagination Engineers",
-    "Narrative Navigators",
-    "Fantasy Forgers",
-    "Verse Venturers",
-    "Dream Draftsmen",
-    "Chronicle Crafters",
-    "Epic Embellishers",
-    "Mystery Makers",
-    "Saga Spinners",
-    "Jest Jesters",
-    "Odyssey Orchestrators",
-];
+const STORY_TITLES_URL = "/data/English/story_titles.txt";
+const PARTICIPANTS_ACTIONS_URL = "/data/English/participants_actions.txt";
+const PARTICIPANTS_TITLES_URL = "/data/English/participants_titles.txt";
 
-const PARTICIPANTSACTIONS = [
-    "spinning the tale…",
-    "weaving the next twist…",
-    "conjuring the next chapter…",
-    "stirring up the story…",
-    "crafting some mischief…",
-    "setting the stage…",
-    "brewing up the next scene…",
-    "igniting the adventure…",
-    "bending the plot…",
-    "steering the journey…",
-    "sparking a new twist…",
-    "hatching the next surprise…",
-    "shaping the saga…",
-    "engineering the excitement…",
-    "molding the mystery…",
-    "painting the next scene…",
-    "mapping the journey…",
-    "dancing with destiny…",
-    "inventing a turn…",
-    "sowing seeds of suspense…",
-]

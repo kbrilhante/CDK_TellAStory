@@ -6,6 +6,8 @@ let images = {
 };
 
 let gameInfo = {
+    participantsTitles: [],
+    participantsActions: [],
     participants: [],
     imgs: [],
     titles: [],
@@ -19,21 +21,24 @@ let gameInfo = {
 }
 
 function preload() {
-    document.getElementById("lblParticipants").innerText = random(PARTICIPANTSTITLES) + ":";
-    images.next = loadImage("./ibagens/next.png");
-    images.ready = loadImage("./ibagens/ready.png");
-    images.theEnd = loadImage("./ibagens/theEnd.png");
-    for (let i = 1; i <= IMAGESNUMBER; i++) {
-        images.imgs.push(loadImage("./ibagens/" + i + ".png"));
+    gameInfo.participantsTitles = loadStrings(PARTICIPANTS_TITLES_URL);
+    gameInfo.participantsActions = loadStrings(PARTICIPANTS_ACTIONS_URL);
+    images.next = loadImage(IMAGE_NEXT);
+    images.ready = loadImage(IMAGE_READY);
+    images.theEnd = loadImage(IMAGE_THE_END);
+    for (let i = 1; i <= IMAGES_NUMBER; i++) {
+        images.imgs.push(loadImage(IMAGES_FOLDER + i + ".png"));
     }
-    gameInfo.titles = loadStrings("./story_titles.txt");
+    gameInfo.titles = loadStrings(STORY_TITLES_URL);
     document.getElementById("btnBegin").onclick = begin;
 }
 
 function setup() {
+    document.getElementById("lblParticipants").innerText = random(gameInfo.participantsTitles) + ":";
     document.getElementById("divSetup").hidden = false;
+
     let scrSize = windowWidth < windowHeight ? windowWidth : windowHeight;
-    scrSize *= 0.8;
+    scrSize *= 0.7;
     const canvas = createCanvas(scrSize, scrSize);
     canvas.parent("game");
 
@@ -64,7 +69,8 @@ function write(txt, size, x, y) {
     textStyle(BOLD);
     textAlign(LEFT, TOP);
     textSize(size);
-    text(txt, x, y);
+    textWrap(WORD);
+    text(txt, x, y, width - 2 * x);
     pop();
 }
 
@@ -98,19 +104,18 @@ function changeImg() {
     changeBG();
     gameInfo.status = 2;
     gameInfo.img = gameInfo.imgs.shift();
-    console.log(gameInfo.imgs.length)
     gameInfo.milli = setTimer(random(20000, 30000));
 }
 
 function nextPlayer() {
     changeBG();
-    gameInfo.player = participants.shift();
+    gameInfo.player = gameInfo.participants.shift();
     gameInfo.player ? next() : theEnd();
 }
 
 function next() {
     gameInfo.status = 1;
-    gameInfo.action = "is " + random(PARTICIPANTSACTIONS);
+    gameInfo.action = "is " + random(gameInfo.participantsActions);
     gameInfo.img = images.next;
     gameInfo.milli = setTimer(random(20000, 30000));
 }
@@ -138,10 +143,9 @@ function setTimer(time) {
 }
 
 function begin() {
-    participants = getParticipants();
+    gameInfo.participants = getParticipants();
     gameInfo.imgs = shuffle(images.imgs);
-    console.log(gameInfo.imgs.length)
-    if (participants.length) {
+    if (gameInfo.participants.length) {
         ready();
         document.getElementById("title").innerText = gameInfo.titles.shift();
         document.getElementById("divGame").hidden = false;
